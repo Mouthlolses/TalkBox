@@ -12,7 +12,6 @@ import com.mytalkbox.talkbox.data.local.model.User
 @Dao
 interface UserDao {
 
-
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(user: User): Long
 
