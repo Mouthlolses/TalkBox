@@ -32,7 +32,7 @@ fun OnBoardingNavigation() {
             RegisterScreen(navController)
         }
         composable("login") {
-            LoginScreen()
+            LoginScreen(navController)
         }
     }
 }

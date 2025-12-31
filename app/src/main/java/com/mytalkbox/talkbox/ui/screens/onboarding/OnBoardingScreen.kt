@@ -69,7 +69,7 @@ fun OnBoardingScreen(navController: NavHostController) {
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Button(
-                onClick = { /* ação de registrar */ },
+                onClick = { navController.navigate("login")},
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 12.dp, end = 12.dp)
