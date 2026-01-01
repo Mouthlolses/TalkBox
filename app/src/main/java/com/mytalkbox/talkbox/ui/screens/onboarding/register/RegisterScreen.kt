@@ -263,7 +263,7 @@ fun RegisterScreen(
                                 visualTransformation = if (showPassword)
                                     VisualTransformation.None
                                 else
-                                    PasswordVisualTransformation(),
+                                    PasswordVisualTransformation()
                             )
                         }
                     }
@@ -290,7 +290,9 @@ fun RegisterScreen(
                             containerColor = MaterialTheme.colorScheme.primary,
                             contentColor = MaterialTheme.colorScheme.onPrimary
                         ),
-                        elevation = ButtonDefaults.buttonElevation(3.dp)
+                        elevation = ButtonDefaults.buttonElevation(
+                            16.dp
+                        )
                     ) {
                         Text(
                             "Registrar",
