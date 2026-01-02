@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -63,138 +62,138 @@ fun LoginScreen(
 
     when (state) {
 
-        is LoginUiState.Idle -> Scaffold(
-            modifier = Modifier
-                .statusBarsPadding()
-                .navigationBarsPadding(),
-            topBar = {
-                TopAppBar(
-                    title = { },
-                    navigationIcon = {
-                        IconButton(
-                            onClick = { navController.popBackStack() },
-                            modifier = Modifier
-                                .padding(start = 4.dp)
-                        ) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_action_arrow_back),
-                                contentDescription = "Voltar",
-                                modifier = Modifier.size(32.dp)
-                            )
+        is LoginUiState.Idle -> {
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = { },
+                        navigationIcon = {
+                            IconButton(
+                                onClick = { navController.popBackStack() },
+                                modifier = Modifier
+                                    .padding(start = 4.dp)
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_action_arrow_back),
+                                    contentDescription = "Voltar",
+                                    modifier = Modifier.size(32.dp)
+                                )
+                            }
                         }
-                    }
-                )
-            }
-        ) { innerPadding ->
-
-            Column(
-                Modifier
-                    .padding(innerPadding)
-                    .fillMaxSize()
-                    .padding(24.dp),
-                verticalArrangement = Arrangement.Center
-            ) {
-
-                Text(
-                    text = "Bem-vindo",
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold
-                )
-
-                Text(
-                    text = "Faça login para continuar",
-                    fontSize = 16.sp,
-                    color = Color.Gray
-                )
-
-                Spacer(Modifier.height(20.dp))
-
-                OutlinedTextField(
-                    value = email,
-                    onValueChange = { email = it },
-                    label = { Text("Email") },
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(26.dp),
-                    singleLine = true,
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_stacked_email),
-                            contentDescription = null
-                        )
-                    }
-                )
-
-                Spacer(Modifier.height(12.dp))
-
-
-                OutlinedTextField(
-                    value = password,
-                    onValueChange = { password = it },
-                    label = { Text("Senha") },
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(26.dp),
-                    singleLine = true,
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_lock),
-                            contentDescription = null
-                        )
-                    },
-                    trailingIcon = {
-                        IconButton(onClick = { showPassword = !showPassword }) {
-                            Icon(
-                                painter = if (showPassword) painterResource(R.drawable.ic_action_visibility)
-                                else painterResource(R.drawable.ic_action_visibility_off),
-                                contentDescription = "password"
-                            )
-                        }
-                    },
-                    visualTransformation = if (showPassword)
-                        VisualTransformation.None
-                    else
-                        PasswordVisualTransformation()
-                )
-
-                Spacer(Modifier.height(20.dp))
-
-
-                Button(
-                    onClick = {
-                        viewModel.login(
-                            userEmail = email,
-                            userPassword = password
-                        )
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(48.dp),
-                    shape = RoundedCornerShape(30.dp),
-                    elevation = ButtonDefaults.buttonElevation(
-                        16.dp
                     )
-                ) {
-                    Text("Entrar", fontSize = 16.sp)
                 }
+            ) { innerPadding ->
 
-                Spacer(Modifier.height(16.dp))
-
-                Row(
-                    Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                Column(
+                    Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                        .padding(24.dp)
+                        .navigationBarsPadding(),
+                    verticalArrangement = Arrangement.Center
                 ) {
-                    HorizontalDivider(Modifier.weight(1f))
-                    Text("  ou  ", color = Color.Gray, fontSize = 14.sp)
-                    HorizontalDivider(Modifier.weight(1f))
-                }
 
-                Spacer(Modifier.height(16.dp))
+                    Text(
+                        text = "Bem-vindo",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.Bold
+                    )
 
-                // Botão Login com Google (apenas UI)
-                GoogleLoginButton(
-                    onClick = {
+                    Text(
+                        text = "Faça login para continuar",
+                        fontSize = 16.sp,
+                        color = Color.Gray
+                    )
 
+                    Spacer(Modifier.height(20.dp))
+
+                    OutlinedTextField(
+                        value = email,
+                        onValueChange = { email = it },
+                        label = { Text("Email") },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(26.dp),
+                        singleLine = true,
+                        leadingIcon = {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_stacked_email),
+                                contentDescription = null
+                            )
+                        }
+                    )
+
+                    Spacer(Modifier.height(12.dp))
+
+
+                    OutlinedTextField(
+                        value = password,
+                        onValueChange = { password = it },
+                        label = { Text("Senha") },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(26.dp),
+                        singleLine = true,
+                        leadingIcon = {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_lock),
+                                contentDescription = null
+                            )
+                        },
+                        trailingIcon = {
+                            IconButton(onClick = { showPassword = !showPassword }) {
+                                Icon(
+                                    painter = if (showPassword) painterResource(R.drawable.ic_action_visibility)
+                                    else painterResource(R.drawable.ic_action_visibility_off),
+                                    contentDescription = "password"
+                                )
+                            }
+                        },
+                        visualTransformation = if (showPassword)
+                            VisualTransformation.None
+                        else
+                            PasswordVisualTransformation()
+                    )
+
+                    Spacer(Modifier.height(20.dp))
+
+
+                    Button(
+                        onClick = {
+                            viewModel.login(
+                                userEmail = email,
+                                userPassword = password
+                            )
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp),
+                        shape = RoundedCornerShape(30.dp),
+                        elevation = ButtonDefaults.buttonElevation(
+                            16.dp
+                        )
+                    ) {
+                        Text("Entrar", fontSize = 16.sp)
                     }
-                )
+
+                    Spacer(Modifier.height(16.dp))
+
+                    Row(
+                        Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        HorizontalDivider(Modifier.weight(1f))
+                        Text("  ou  ", color = Color.Gray, fontSize = 14.sp)
+                        HorizontalDivider(Modifier.weight(1f))
+                    }
+
+                    Spacer(Modifier.height(16.dp))
+
+                    // Botão Login com Google (apenas UI)
+                    GoogleLoginButton(
+                        onClick = {
+
+                        }
+                    )
+                }
             }
         }
 

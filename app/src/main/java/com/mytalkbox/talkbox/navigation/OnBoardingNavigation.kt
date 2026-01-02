@@ -1,5 +1,9 @@
 package com.mytalkbox.talkbox.navigation
 
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -23,7 +27,11 @@ fun OnBoardingNavigation() {
     NavHost(
         navController = navController,
         startDestination = "onboarding",
-        modifier = Modifier
+        modifier = Modifier,
+        enterTransition = { fadeIn() + slideInHorizontally { it } },
+        exitTransition = { fadeOut() + slideOutHorizontally { -it } },
+        popEnterTransition = { fadeIn() + slideInHorizontally { -it } },
+        popExitTransition = { fadeOut() + slideOutHorizontally { it } }
     ) {
         composable("onboarding") {
             OnBoardingScreen(navController)
