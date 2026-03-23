@@ -16,20 +16,28 @@ fun NavHost() {
 
     NavHost(
         navController = navController,
-        startDestination = Routes.HomeRoute,
+        startDestination = Routes.HomeRoute.route,
     ) {
-        composable<Routes.HomeRoute> {
+        composable(Routes.HomeRoute.route) {
             HomeScreen(
-                onNavigate = {
-                    navController.navigate(Routes.MessageRoute)
+                onNavigate = { userId, userName ->
+                    navController.navigate(
+                        Routes.MessageRoute.createRoute(userId, userName)
+                    )
                 }
             )
         }
-        composable<Routes.MessageRoute> {
+        composable(Routes.MessageRoute.route) { backStackEntry ->
+
+            val userId = backStackEntry.arguments?.getString("userId") ?: ""
+            val userName = backStackEntry.arguments?.getString("userName") ?: ""
+
             MessageScreen(
                 onNavigate = {
                     navController.popBackStack()
-                }
+                },
+                userId = userId,
+                userName = userName
             )
         }
     }

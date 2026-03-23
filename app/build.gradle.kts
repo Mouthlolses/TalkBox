@@ -37,10 +37,18 @@ android {
     }
     buildFeatures {
         compose = true
+        dataBinding = true
+    }
+    configurations.all {
+        resolutionStrategy {
+            force("androidx.core:core:1.18.0")
+        }
     }
 }
 
 dependencies {
+
+    implementation("im.zego:zego_inapp_chat_uikit_android:+")
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -3,11 +3,15 @@ package com.talkboxapp.talkbox.navigation.routes
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed interface Routes {
+sealed class Routes(val route: String){
 
     @Serializable
-    data object HomeRoute : Routes
+    object HomeRoute : Routes("home")
 
     @Serializable
-    data object MessageRoute : Routes
+    object MessageRoute : Routes("message/{userId}/{userName}"){
+
+        fun createRoute(userId: String, userName: String) =
+            "message/$userId/$userName"
+    }
 }
